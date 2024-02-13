@@ -9,8 +9,7 @@ import Navbar from './components/Navbar';
 import axios from 'axios'
 import PDfdocument from "./components/PDFdocument";
 import { Alert, Snackbar } from "@mui/material";
-import MainLayout from "./components/layout/MainLayout";
-
+ 
 function App() {
   const [message, setMessage] = useState('')
   const [open, setOpen] = useState(false)
