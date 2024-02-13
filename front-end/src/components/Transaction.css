@@ -1,0 +1,57 @@
+.transaction-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 25px black;
+    height: 30vh;
+    width: 20vw;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center; */
+}
+
+.transaction {
+    display: grid;
+    column-gap: 5vw;
+    row-gap: 2vh;
+    grid-template-columns: repeat(2, 1fr);
+    font-size: 20px;
+    padding-top: 20px;
+    padding: 20px;
+}
+
+.text {
+    color: gray;
+}
+
+.value {
+    color: black;
+}
+
+.deletebtn {
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    padding-left: 6px;
+    padding-top: 5px;
+    padding-bottom: 3px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 2vh;
+    width: 2vw;
+    margin-left: 17vw;
+}
+
+.deletebtn:hover {
+    background-color: #d9363e;
+}
+
+@media (max-width: 768px) {
+    .transaction-card {
+        width: 100%;
+    }
+}

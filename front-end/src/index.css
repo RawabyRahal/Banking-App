@@ -1,0 +1,18 @@
+body {
+  background-image: url(https://phonoteka.org/uploads/posts/2021-04/1618462527_31-phonoteka_org-p-sovremennii-fon-dlya-teksta-32.png);
+  background-size: cover;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0; */
+  font-family: "Lato", sans-serif;
+  color: darkcyan;
+  width: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

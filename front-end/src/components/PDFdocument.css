@@ -1,0 +1,18 @@
+.start-date{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.date{
+    padding-right: 2vw;
+    margin-bottom: 8vh;
+}
+.pdf-btn{
+    height: 7vh;
+    width: 12vw;
+    color: white;
+    background-color:#0e5656;
+    border-radius: 8px;
+    margin-top: 5vh;
+    font-size: 20px;
+}

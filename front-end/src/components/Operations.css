@@ -1,0 +1,45 @@
+.operation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.MuiInputBase-root {
+    width: 30vw;
+    /* padding: 10px; */
+    /* border: 1px solid #ccc; */
+    border-radius: 5px;
+    /* outline: none; */
+    transition: border-color 0.3s;
+    margin-bottom: 5vh;
+}
+
+h1 {
+    padding-bottom: 5vh;
+}
+.btns{
+margin-left: 5vw;
+}
+.deposit {
+    background-color: green;
+    height: 2.5vw;
+    width: 19vh;
+    border-radius: 8px;
+    margin-right: 1vw;
+    font-size: 18px;
+    font-family: "Lato", sans-serif;
+    color: white;
+}
+
+.withdraw {
+    background-color: rgb(202, 79, 79);
+    height: 2.5vw;
+    width: 19vh;
+    border-radius: 8px;
+    margin-right: 3vw;
+    font-size: 18px;
+    font-family: "Lato", sans-serif;
+    color: white;
+}
