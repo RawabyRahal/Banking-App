@@ -1,3 +1,25 @@
+export const TRANSACTIONS_URL = 'http://localhost:8585/transactions'
+export const BREAKDOWN_URL = 'http://localhost:8585/breakdown'
+export const BALANCE_URL = 'http://localhost:8585/balance'
+export const GENERATE_PDF_URL = 'http://localhost:8585/generatePDF'
+
+export const CURRENCY_SYMBOL = '$'
+export const RED = 'red'
+export const GREEN = 'green'
+export const TRANSACTION_WITHDRAW = 'withdraw'
+export const TRANSACTION_DEPOSIT = 'deposit'
+export const INSUFFICIENT_FUNDS_THRESHOLD = 500
+export const ZERO_AMOUNT = 0
+export const EMPTY_INPUT_MESSAGE = 'Input field is EMPTY!'
+export const NOT_A_NUMBER_MESSAGE = 'Amount it is NOT a number'
+export const TRANSACTION_ADDED_SUCCESSFULLY_MESSAGE = 'The transaction was added SUCCESSFULLY'
+export const TRANSACTION_DELETED_SUCCESSFULLY_MESSAGE = 'The transaction was deleted SUCCESSFULLY'
+export const INSUFFICIENT_FUNDS_MESSAGE = 'Insufficient Funds'
+export const ERROR_FETCHING_DATA_MESSAGE = 'Error fetching data: '
+export const ERROR_DELETE_DATA_MESSAGE = 'Error deleting data: '
+export const ERROR_ADDING_TRANSACTION_MESSAGE = "Error adding transaction:";
+export const ERROR_GENERATING_PDF = 'Error in generating PDF'
+
 export const MONTHS = [
     {},
     { value: '1', label: 'January' },

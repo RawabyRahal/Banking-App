@@ -2,6 +2,7 @@ import React, { useEffect, useState, useSWR } from 'react'
 import axios from 'axios'
 import './Breakdown.css'
 import BreakdownModal from './BreakdownModal'
+import * as consts from '../Config'
 
 // import CircularProgress from '@mui/joy/CircularProgress'
 
@@ -36,25 +37,28 @@ export default function Breakdown() {
     //     return <CircularProgress/>
     // }
 
+
     const [breakdown, setBreakdown] = useState([])
     const [hovered, setHovered] = useState(false)
     const [categoryTransactions, setCategoryTransactions] = useState([])
 
+    const containerHeight = 20 + breakdown.length * 15
+
     function getTransactions() {
-        return axios.get('http://localhost:8585/breakdown')
+        return axios.get(consts.BREAKDOWN_URL)
             .then(response => response.data)
             .catch(error => {
-                console.error("Error fetching data:", error)
+                console.error(consts.ERROR_FETCHING_DATA_MESSAGE, error)
             })
     }
 
     async function getTransactionsByCategory(category) {
         try {
-            const response = await axios.get(`http://localhost:8585/transactions/${category}`);
+            const response = await axios.get(`${consts.TRANSACTIONS_URL}/${category}`);
             setCategoryTransactions(response.data);
             setHovered(category);
         } catch (error) {
-            console.error('Error fetching data:', error);
+            console.error(consts.ERROR_FETCHING_DATA_MESSAGE, error);
         }
     }
 
@@ -65,9 +69,6 @@ export default function Breakdown() {
         }
         getData()
     }, [])
-
-
-    const containerHeight = 20 + breakdown.length * 15
 
     return (
         <div className='container'>
@@ -80,10 +81,9 @@ export default function Breakdown() {
                             <div className='value'>{trans._id}</div>
 
                             <div className='text'>Total</div>
-                            {/* <div className='value' style={{ color: trans.total < 0 ? 'red' : 'green' }}>${Math.abs(trans.total)}</div> */}
-                            <div className='value' style={{ color: trans.total < 0 ? 'red' : 'green' }}>{trans.total < 0 ? `-$${Math.abs(trans.total)}` : `$${trans.total}`}</div>
+                            <div className='value' style={{ color: trans.total < consts.ZERO_AMOUNT ? consts.RED : consts.GREEN }}>{trans.total < consts.ZERO_AMOUNT ? `-${consts.CURRENCY_SYMBOL}${Math.abs(trans.total)}` : `${consts.CURRENCY_SYMBOL}${trans.total}`}</div>
                         </div>
-                        {hovered && <BreakdownModal transactions={categoryTransactions} />}
+                        {hovered === trans._id && <BreakdownModal transactions={categoryTransactions} />}
                     </div>
                 ))}
             </div>

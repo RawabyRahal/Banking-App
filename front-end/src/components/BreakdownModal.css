@@ -1,7 +1,7 @@
 .modal {
     height: 25vh;
     width: 30vw;
-    background-color: rgb(148, 153, 159);
+    background-color: rgb(148, 153, 159, 0.7);
     z-index: 1;
     position: fixed;
     overflow: auto;
@@ -10,7 +10,6 @@
     overflow: auto;
     left: 30%;
     top: 25%;
-    opacity: 0.15;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -21,6 +20,5 @@
     color: black;
     text-align: center;
     margin-top: 1vh;
-    opacity: 1;
     overflow-y: auto;
 }

@@ -1,89 +1,73 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Operations.css'
 // import './Operations.scss'
 import TextField from "@mui/material/TextField";
 import axios from 'axios'
-import { Alert, Snackbar } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import * as consts from '../Config'
 
 export default function Operations(props) {
-  const [open, setOpen] = useState(false)
-
-  const handleClick = () => {
-    setOpen(true)
-  }
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpen(false);
-  }
-
   const navigate = useNavigate()
 
   const [amount, setAmount] = useState('')
   const [vendor, setVendor] = useState('')
   const [category, setCategory] = useState('')
-  const [message, setMessage] = useState('')
   const [date, setDate] = useState('')
 
   const handleTransaction = async (transaction) => {
 
     if (isNaN(amount)) {
-      handleClick()
-      setMessage('Amount it is NOT a number')
+      props.handleClick()
+      props.setMessage(consts.NOT_A_NUMBER_MESSAGE)
       return
     }
-    if (amount.length === 0 || vendor.length === 0 || category.length === 0) {
-      handleClick()
-      setMessage('Input field is EMPTY!')
+    if (!amount || !vendor || !category) {
+      props.handleClick()
+      props.setMessage(consts.EMPTY_INPUT_MESSAGE)
       return
     }
 
-    const moneyAmount = transaction === 'deposit' ? amount : -amount
+    const moneyAmount = transaction === consts.TRANSACTION_DEPOSIT ? amount : -amount
     try {
-      await axios.post('http://localhost:8585/transactions', {
+      await axios.post(consts.TRANSACTIONS_URL, {
         amount: moneyAmount,
         category: category,
         vendor: vendor,
         date: date
       })
-     
+
       props.updateBalance(Number(moneyAmount))
       setAmount('')
       setVendor('')
       setCategory('')
       navigate('/')
       props.handleClick()
-      props.setMessage("The transaction was added SUCCESSFULLY")
+      props.setMessage(consts.TRANSACTION_ADDED_SUCCESSFULLY_MESSAGE)
     }
     catch (error) {
-      console.error("Error adding transaction:", error)
+      console.error(consts.ERROR_ADDING_TRANSACTION_MESSAGE, error)
     }
   }
 
   const handleDeposite = () => {
-    handleTransaction('deposit')
+    handleTransaction(consts.TRANSACTION_DEPOSIT)
   }
 
-
-
   const handleWithdraw = () => {
-    if (amount.length === 0 || vendor.length === 0 || category.length === 0) {
-      handleClick()
-      setMessage('input is EMPTY!')
+    if (!amount || !vendor || !category) {
+      props.handleClick()
+      props.setMessage(consts.EMPTY_INPUT_MESSAGE)
       return
     }
-    if (props.balance - amount < 500) {
-      handleClick()
-      setMessage("Insufficient Funds")
+    if (props.balance - amount < consts.INSUFFICIENT_FUNDS_THRESHOLD) {
+      props.handleClick()
+      props.setMessage(consts.INSUFFICIENT_FUNDS_MESSAGE)
     }
     else {
-      handleTransaction('withdraw')
+      handleTransaction(consts.TRANSACTION_WITHDRAW)
     }
   }
 
@@ -115,16 +99,6 @@ export default function Operations(props) {
         <button className='deposit' onClick={handleDeposite}>Deposit</button>
         <button className='withdraw' onClick={handleWithdraw}>Withdraw</button>
       </div>
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert
-          onClose={handleClose}
-          severity="success"
-          variant="filled"
-          sx={{ width: '100%' }}
-        >
-          {message}
-        </Alert>
-      </Snackbar>
     </div>
   )
 }

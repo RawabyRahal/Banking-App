@@ -1,7 +1,7 @@
 import "./App.css"
 
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Transactions from './components/Transactions';
 import Operations from './components/Operations';
 import Breakdown from './components/Breakdown';
@@ -9,7 +9,8 @@ import Navbar from './components/Navbar';
 import axios from 'axios'
 import PDfdocument from "./components/PDFdocument";
 import { Alert, Snackbar } from "@mui/material";
- 
+import * as consts from './Config'
+
 function App() {
   const [message, setMessage] = useState('')
   const [open, setOpen] = useState(false)
@@ -27,10 +28,10 @@ function App() {
   const [balance, setBalance] = useState(-100)
 
   function getBalance() {
-    return axios.get('http://localhost:8585/balance')
+    return axios.get(consts.BALANCE_URL)
       .then(response => response.data)
       .catch(error => {
-        console.error("Error fetching data:", error)
+        console.error(consts.ERROR_FETCHING_DATA_MESSAGE, error)
       })
   }
 
@@ -53,7 +54,7 @@ function App() {
           <Navbar balance={balance} />
           <Routes>
           {/* <Route path='/' element={<MainLayout />}/> */}
-            <Route path="/" element={<Transactions />} />
+            <Route path="/" element={<Transactions handleClick={handleClick} setMessage={setMessage}/>} />
             <Route path="/operations" element={<Operations updateBalance={updateBalance} balance={balance} handleClick={handleClick} setMessage={setMessage}/>} />
             <Route path="/breakdown" element={<Breakdown />} />
             <Route path="/report" element={<PDfdocument />} />
@@ -61,8 +62,8 @@ function App() {
           <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
             <Alert
               onClose={handleClose}
-              severity="success"
-              variant="filled"
+              // severity="success"
+              // variant="filled"
               sx={{ width: '100%' }}
             >
               {message}

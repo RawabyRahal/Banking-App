@@ -6,32 +6,33 @@ import Select from 'react-select'
 import * as consts from '../Config'
 
 export default function Transactions(props) {
-    const [transactions, setTtransactions] = useState([])
+
+    const [transactions, setTransactions] = useState([])
+    const [transactionsMonthYear, setTransactionsMonthYear] = useState([])
     const [selectedMonth, setSelectedMonth] = useState('')
     const [selectedYear, setSelectedYear] = useState('')
-    const [transactionsMonthYear, setTransactionsMonthYear] = useState([])
 
     function getTransactions() {
-        return axios.get('http://localhost:8585/transactions')
+        return axios.get(consts.TRANSACTIONS_URL)
             .then(response => response.data)
             .catch(error => {
-                console.error("Error fetching data:", error)
+                console.error(consts.ERROR_FETCHING_DATA_MESSAGE, error)
             })
     }
 
     useEffect(() => {
         const getData = async function () {
             let transactionsData = await getTransactions()
-            setTtransactions(transactionsData)
+            setTransactions(transactionsData)
         }
         getData()
     }, [])
 
     function getTransactionsByMonthAndYear(month, year) {
-        return axios.get(`http://localhost:8585/transactions/${month}/${year}`)
+        return axios.get(`${consts.TRANSACTIONS_URL}/${month}/${year}`)
             .then(response => response.data)
             .catch(error => {
-                console.error("Error fetching data:", error)
+                console.error(consts.ERROR_FETCHING_DATA_MESSAGE, error)
             })
     }
 
@@ -48,6 +49,34 @@ export default function Transactions(props) {
     }, [selectedMonth, selectedYear])
 
 
+    const deleteTransaction = async (id) => {
+        try {
+            await axios.delete(`${consts.TRANSACTIONS_URL}/${id}`)
+            props.handleClick()
+            props.setMessage(consts.TRANSACTION_DELETED_SUCCESSFULLY_MESSAGE)
+            const newTransaction = [...transactions]
+            const transIndex = newTransaction.findIndex(trans => trans._id === id)
+            newTransaction.splice(transIndex, 1)
+            setTransactions(newTransaction)
+        } catch (error) {
+            console.error(consts.ERROR_DELETE_DATA_MESSAGE, error)
+        }
+    }
+
+    const deleteTransactionByMonthAndYear = async (id) => {
+        try {
+            await axios.delete(`${consts.TRANSACTIONS_URL}/${id}`)
+            props.handleClick()
+            props.setMessage(consts.TRANSACTION_DELETED_SUCCESSFULLY_MESSAGE)
+            const newTransaction = [...transactionsMonthYear]
+            const transIndex = newTransaction.findIndex(trans => trans._id === id)
+            newTransaction.splice(transIndex, 1)
+            setTransactionsMonthYear(newTransaction)
+        } catch (error) {
+            console.error(consts.ERROR_DELETE_DATA_MESSAGE, error)
+        }
+    }
+
     return (
         <div className='transactions'>
             <h1>Transactions</h1>
@@ -60,10 +89,10 @@ export default function Transactions(props) {
 
             <div className='trans'>
                 {(!selectedMonth.value || !selectedYear.value) &&
-                    transactions.map((trans, index) => <Transaction key={index} transaction={trans} />)
+                    transactions.map((trans, index) => <Transaction key={index} transaction={trans} deleteTransaction={deleteTransaction} />)
                 }
                 {selectedMonth.value && selectedYear.value &&
-                    transactionsMonthYear.map((trans, index) => <Transaction key={index} transaction={trans} />)
+                    transactionsMonthYear.map((trans, index) => <Transaction key={index} transaction={trans} deleteTransaction={deleteTransactionByMonthAndYear} />)
                 }
             </div>
         </div>

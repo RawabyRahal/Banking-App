@@ -4,6 +4,7 @@ import { AiOutlineTransaction } from 'react-icons/ai';
 import { BiMoneyWithdraw } from 'react-icons/bi';
 import { TiThMenu } from 'react-icons/ti';
 import { BiSolidReport } from "react-icons/bi";
+import * as consts from '../Config'
 
 import './Navbar.css';
 
@@ -23,11 +24,11 @@ const Navbar = (props) => {
           <div className="navbar-link"><Link to="/operations"><BiMoneyWithdraw />Operations</Link></div>
           <div className="navbar-link"><Link to="/breakdown"><TiThMenu />Breakdown</Link></div>
           <div className="navbar-link"><Link to="/report"><BiSolidReport />Report</Link></div>
-
+         
         </div>
       </div>
-      <div className="balance" style={{ color: props.balance < 500 ? 'red' : 'green' }}>
-        Balance: {props.balance < 500 ? `-$${Math.abs(props.balance)}` : `${props.balance}`}
+      <div className="balance" style={{ color: props.balance < consts.INSUFFICIENT_FUNDS_THRESHOLD ? consts.RED : consts.GREEN }}>
+        Balance: {props.balance < consts.ZERO_AMOUNT ? `-${consts.CURRENCY_SYMBOL}${Math.abs(props.balance)}` : `${consts.CURRENCY_SYMBOL}${props.balance}`}
       </div>
     </nav>
   );

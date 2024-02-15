@@ -93,7 +93,6 @@ router.get('/transactions/:month/:year', async (req, res) => {
                     $lte: new Date(year, month)
                 }
             })
-        console.log(transactionsByMonthandYear)
         res.status(200).send(transactionsByMonthandYear)
     }
     catch (error) {
