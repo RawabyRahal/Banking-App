@@ -30,16 +30,6 @@
   color: #61dafb;
 }
 
-.App.light {
-  background-color: #ffffff;
-  color: #000000;
-}
-
-/* Dark theme styles */
-.App.dark {
-  background-color: #121212;
-  color: #ffffff;
-}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

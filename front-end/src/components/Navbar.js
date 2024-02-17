@@ -17,18 +17,17 @@ const Navbar = (props) => {
 
   return (
     <nav className={`navbar ${menuOpen ? 'menu-open' : ''}`}>
+      <div className="navbar-toggle" onClick={handleToggleMenu}><TiThMenu /></div>
       <div className="navbar-container">
-        <div className="navbar-toggle" onClick={handleToggleMenu}><TiThMenu /></div>
         <div className="navbar-links">
           <div className="navbar-link"><Link to="/"><AiOutlineTransaction />Transactions</Link></div>
           <div className="navbar-link"><Link to="/operations"><BiMoneyWithdraw />Operations</Link></div>
           <div className="navbar-link"><Link to="/breakdown"><TiThMenu />Breakdown</Link></div>
           <div className="navbar-link"><Link to="/report"><BiSolidReport />Report</Link></div>
-         
+          <div className="balance" style={{ color: props.balance < consts.INSUFFICIENT_FUNDS_THRESHOLD ? consts.RED : consts.GREEN }}>
+            Balance: {props.balance < consts.ZERO_AMOUNT ? `-${consts.CURRENCY_SYMBOL}${Math.abs(props.balance)}` : `${consts.CURRENCY_SYMBOL}${props.balance}`}
+          </div>
         </div>
-      </div>
-      <div className="balance" style={{ color: props.balance < consts.INSUFFICIENT_FUNDS_THRESHOLD ? consts.RED : consts.GREEN }}>
-        Balance: {props.balance < consts.ZERO_AMOUNT ? `-${consts.CURRENCY_SYMBOL}${Math.abs(props.balance)}` : `${consts.CURRENCY_SYMBOL}${props.balance}`}
       </div>
     </nav>
   );

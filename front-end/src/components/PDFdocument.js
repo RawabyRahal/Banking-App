@@ -23,7 +23,7 @@ const PDfdocument = () => {
 
             const link = document.createElement('a')
             link.href = window.URL.createObjectURL(blob)
-            link.download = 'transactions.pdf'
+            link.download = 'Transactions Report.pdf'
             link.click()
         } catch (error) {
             console.error(consts.ERROR_GENERATING_PDF, error)

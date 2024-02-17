@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Operations.css'
 // import './Operations.scss'
@@ -77,22 +77,26 @@ export default function Operations(props) {
       <TextField
         label="Transaction Amount"
         variant="outlined"
+        title='Transaction Amount'
         value={amount} onChange={(e) => setAmount(e.target.value)}
       />
       <TextField
         label="Transaction Vendor"
         variant="outlined"
+        title='Transaction Vendor'
         value={vendor} onChange={(e) => setVendor(e.target.value)}
       />
       <TextField
-        className="search"
         label="Transaction Category"
         variant="outlined"
+        title='Category of Transaction'
         value={category} onChange={(e) => setCategory(e.target.value)}
       />
       <div>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DatePicker onChange={date => setDate(date)} />
+        <LocalizationProvider dateAdapter={AdapterDayjs} >
+          <div title='Select Date'>
+            <DatePicker onChange={date => setDate(date)} />
+          </div>
         </LocalizationProvider>
       </div>
       <div className='btns'>

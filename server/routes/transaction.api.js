@@ -3,6 +3,7 @@ const router = express.Router()
 const Transaction = require('../model/Transaction')
 const Balance = require('../model/Balance')
 const PDFDocument = require('pdfkit')
+const consts = require('../config.js')
 
 router.get('/transactions', async (req, res) => {
     try {
@@ -10,7 +11,7 @@ router.get('/transactions', async (req, res) => {
         res.status(200).send(transaction)
     }
     catch (error) {
-        console.error("Error in Fetching Data: ", error)
+        console.error(consts.ERROR_FETCHING_DATA_MESSAGE, error)
         res.status(404).send({ error: "try again!" });
     }
 })
@@ -29,7 +30,7 @@ router.post('/transactions', async (req, res) => {
     }
     catch (error) {
         console.error(error)
-        res.status(404).send({ error: "Not saved! try again!" })
+        res.status(404).send({ error: consts.SAVE_ERROR_MESSAGE })
     }
 })
 
@@ -123,7 +124,7 @@ router.get('/generatePDF/:startDate/:endDate', async (req, res) => {
             .moveDown()
 
         transactions.forEach((transaction) => {
-            doc.fontSize(12).text(`Date: ${transaction.date.toDateString()}  - Vendor: ${transaction.vendor} - Amount: $${transaction.amount}`);
+            doc.fontSize(12).text(`Date: ${transaction.date.toDateString()} || Vendor: ${transaction.vendor} || Amount: ${consts.CURRENCY_SYMBOL}${transaction.amount}`);
         })
         doc.end()
     }

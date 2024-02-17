@@ -1,7 +1,7 @@
 import "./App.css"
 
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Transactions from './components/Transactions';
 import Operations from './components/Operations';
 import Breakdown from './components/Breakdown';
@@ -51,11 +51,11 @@ function App() {
     <>
       <Router>
         <div className="App">
-          <Navbar balance={balance} />
+          <Navbar balance={balance}/>
           <Routes>
-          {/* <Route path='/' element={<MainLayout />}/> */}
-            <Route path="/" element={<Transactions handleClick={handleClick} setMessage={setMessage}/>} />
-            <Route path="/operations" element={<Operations updateBalance={updateBalance} balance={balance} handleClick={handleClick} setMessage={setMessage}/>} />
+            {/* <Route path='/' element={<MainLayout />}/> */}
+            <Route path="/" element={<Transactions handleClick={handleClick} setMessage={setMessage} />} />
+            <Route path="/operations" element={<Operations updateBalance={updateBalance} balance={balance} handleClick={handleClick} setMessage={setMessage} />} />
             <Route path="/breakdown" element={<Breakdown />} />
             <Route path="/report" element={<PDfdocument />} />
           </Routes>

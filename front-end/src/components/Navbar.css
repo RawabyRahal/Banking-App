@@ -1,10 +1,11 @@
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  height: 20vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    height: 20vh;
 }
+
 .navbar-container {
     display: flex;
     align-items: center;
@@ -17,35 +18,77 @@
     display: none;
 }
 
+.balance {
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+    margin-left: auto;
+    margin-top: 15vh;
+    margin-left: 45vw;
+    font-size: 20px;
+}
+
 .navbar-links {
     display: flex;
     align-items: center;
     color: #0e5656;
-    margin-top: -15vh;
+    margin-top: -10vh;
+    font-size: 20px;
+    width: 100vw;
 }
 
 .navbar-link a {
     font-weight: bold;
     color: #0e5656;
     text-decoration: none;
-    font-size: 22px;
-    display: flex;
     align-items: center;
-    padding: 10px;
+    padding: 10px 16px;
+    position: relative;
+    display: block;
+    text-align: center;
+    transition: .5s;
 }
 
 .navbar-link a svg {
-    margin-right: 8px;
+    margin-right: 0.4vw;
 }
 
-.balance {
-    font-weight: bold;
-    font-size: 18px;
-    color: white;
-    margin-left: auto;
-    margin-top: 10px;
-    margin-right: 2vw;
-    font-size: 20px;
+.navbar-link a::before,
+.navbar-link a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: #454545;
+    overflow: hidden;
+    z-index: -1;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+
+.navbar-link a::before {
+    top: 0;
+    left: 0;
+    transform-origin: right;
+}
+
+.navbar-link a::after {
+    bottom: 0;
+    right: 0;
+    transform-origin: left;
+}
+
+.navbar-link a:hover::before,
+.navbar-link a:hover::after {
+    transform: scaleX(1);
+}
+
+.navbar-link a:hover::before {
+    transform-origin: left;
+}
+
+.navbar-link a:hover::after {
+    transform-origin: right;
 }
 
 @media screen and (max-width: 768px) {
@@ -61,7 +104,14 @@
     }
 
     .navbar-toggle {
+        cursor: pointer;
         display: block;
+
+        z-index: 1;
+    }
+
+    .navbar.menu-open .navbar-toggle {
+        color: azure;
     }
 
     .navbar-links {
@@ -73,8 +123,8 @@
         left: 0;
         background-color: #0e5656;
         padding: 10px;
-        z-index: 1;
         transition: opacity 0.4s;
+        padding-top: 15vh;
     }
 
     .navbar.menu-open .navbar-links {
@@ -85,5 +135,13 @@
     .navbar-link a {
         font-weight: bold;
         color: white;
+    }
+
+    .balance {
+        font-weight: bold;
+        font-size: 18px;
+        background-color: white;
+        padding: 2%;
+        border-radius: 16px;
     }
 }
