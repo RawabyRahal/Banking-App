@@ -10,8 +10,10 @@ const mongoose = require('mongoose')
 
 mongoose.connect("mongodb://127.0.0.1:27017/transactionsDB").catch((err)=> console.log(err))
 
-app.use(cors())
-
+app.use(cors({
+    origin: 'http://localhost:3000'
+  }));
+  
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
