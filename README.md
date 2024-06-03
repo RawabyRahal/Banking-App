@@ -1,4 +1,4 @@
-# Bank App
+# Banking App
 
 Welcome to the Bank App! This application provides a banking platform where users can manage their transactions and check their account balances.
 
