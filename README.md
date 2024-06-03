@@ -16,24 +16,27 @@ To run the Bank App locally, follow these steps:
     ```bash
     cd Bank
 
-4. Install backend dependencies:
+3. Install backend dependencies:
    
    ```bash
     cd server
     npm install
 
-6. Install frontend dependencies:
+4. Install frontend dependencies:
    ```bash
    cd front-end
    npm install
-
-8. Start the frontend development server:
+## Running the Application
+1. Start the frontend development server:
+   
    ```bash
    npm start
-10. Start the backend server:
+   
+2. Start the backend server:
 
     ```bash
     cd server
     npm start
 
-Access the application in your web browser at http://localhost:3000.
+3. **Access the application**:
+   Open your web browser and navigate to http://localhost:3000.
