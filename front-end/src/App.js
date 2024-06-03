@@ -14,6 +14,7 @@ import * as consts from './Config'
 function App() {
   const [message, setMessage] = useState('')
   const [open, setOpen] = useState(false)
+  const [isDark, setIsDark] = useState(false)
 
   const handleClick = () => {
     setOpen(true)
@@ -47,11 +48,18 @@ function App() {
     const updatedBalance = balance + value
     setBalance(updatedBalance)
   }
+
+  const handleTheme = () => {
+    setIsDark(!isDark)
+  }
+
   return (
     <>
       <Router>
         <div className="App">
-          <Navbar balance={balance}/>
+          {/* <div className={`App ${isDark ? 'dark-theme' : 'light-theme'}`}> */}
+
+          <Navbar balance={balance} handleTheme={handleTheme} />
           <Routes>
             {/* <Route path='/' element={<MainLayout />}/> */}
             <Route path="/" element={<Transactions handleClick={handleClick} setMessage={setMessage} />} />

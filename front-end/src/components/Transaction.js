@@ -5,7 +5,7 @@ import * as consts from '../Config'
 
 
 export default function Transaction(props) {
-  
+
   return (
     <div className='transaction-card'>
       <div className='transaction'>
@@ -17,12 +17,10 @@ export default function Transaction(props) {
         <div className='value'>{props.transaction.category}</div>
 
         <div className='text' >Amount</div>
-        <div className='value' style={{ color: props.transaction.amount < consts.ZERO_AMOUNT ? consts.RED : consts.GREEN}}>{props.transaction.amount < consts.ZERO_AMOUNT ? `-${consts.CURRENCY_SYMBOL}${Math.abs(props.transaction.amount)}` : `${consts.CURRENCY_SYMBOL}${props.transaction.amount}`}</div>
+        <div className='value' style={{ color: props.transaction.amount < consts.ZERO_AMOUNT ? consts.RED : consts.GREEN }}>{props.transaction.amount < consts.ZERO_AMOUNT ? `-${consts.CURRENCY_SYMBOL}${Math.abs(props.transaction.amount)}` : `${consts.CURRENCY_SYMBOL}${props.transaction.amount}`}</div>
 
       </div>
-      <div title='Delete' className='deletebtn' onClick={()=>props.deleteTransaction(props.transaction._id)}><DeleteIcon /></div><br></br>
-
-      
+      <div title='Delete' className='deletebtn' onClick={() => props.deleteTransaction(props.transaction._id)}><DeleteIcon /></div><br></br>
     </div>
   )
 }

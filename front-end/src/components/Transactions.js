@@ -49,32 +49,27 @@ export default function Transactions(props) {
     }, [selectedMonth, selectedYear])
 
 
-    const deleteTransaction = async (id) => {
+    
+    const deleteTransactionById = async (id, updatedTransactions, setUpdatedTransactions) => {
         try {
             await axios.delete(`${consts.TRANSACTIONS_URL}/${id}`)
             props.handleClick()
             props.setMessage(consts.TRANSACTION_DELETED_SUCCESSFULLY_MESSAGE)
-            const newTransaction = [...transactions]
+            const newTransaction = [...updatedTransactions]
             const transIndex = newTransaction.findIndex(trans => trans._id === id)
             newTransaction.splice(transIndex, 1)
-            setTransactions(newTransaction)
+            setUpdatedTransactions(newTransaction)
         } catch (error) {
             console.error(consts.ERROR_DELETE_DATA_MESSAGE, error)
         }
     }
 
+    const deleteTransaction = async (id) => {
+        await deleteTransactionById(id, transactions, setTransactions)
+    }
+
     const deleteTransactionByMonthAndYear = async (id) => {
-        try {
-            await axios.delete(`${consts.TRANSACTIONS_URL}/${id}`)
-            props.handleClick()
-            props.setMessage(consts.TRANSACTION_DELETED_SUCCESSFULLY_MESSAGE)
-            const newTransaction = [...transactionsMonthYear]
-            const transIndex = newTransaction.findIndex(trans => trans._id === id)
-            newTransaction.splice(transIndex, 1)
-            setTransactionsMonthYear(newTransaction)
-        } catch (error) {
-            console.error(consts.ERROR_DELETE_DATA_MESSAGE, error)
-        }
+        await deleteTransactionById(id, transactionsMonthYear, setTransactionsMonthYear)
     }
 
     return (
