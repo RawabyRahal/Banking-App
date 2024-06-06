@@ -6,7 +6,7 @@ Welcome to Banking App! This application provides a banking platform where users
 
 ### Frontend
 - **React.js:** A JavaScript library for building user interfaces.
-- - **JS**
+- **JavaScript**
 - **CSS (Cascading Style Sheets):** A stylesheet language used for describing the presentation of a document written in HTML.
 
 ### Backend
