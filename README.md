@@ -2,6 +2,7 @@
 
 #### Welcome to Banking App!
 This application provides a banking platform where users can manage their transactions and check their account balances.
+
 <br>
 
 ### Technologies Used
