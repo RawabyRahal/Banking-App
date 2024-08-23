@@ -24,7 +24,7 @@ This application provides a banking platform where users can manage their transa
 - **PDFKit:** A JavaScript library for generating PDF documents.
 - **Axios:** A Promise-based HTTP client for JavaScript.
 
-## Installation
+### Installation
 
 To run the Bank App locally, follow these steps:
 
