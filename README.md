@@ -3,7 +3,7 @@
 #### Welcome to Banking App!
 This application provides a banking platform where users can manage their transactions and check their account balances.
 
-## Technologies Used
+### Technologies Used
 
 ### Frontend
 - **React.js:** A JavaScript library for building user interfaces.
