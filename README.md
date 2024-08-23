@@ -49,7 +49,7 @@ To run the Bank App locally, follow these steps:
    cd front-end
    npm install
    
-## Running the Application
+### Running the Application
 
 1. Start the frontend server:
    
