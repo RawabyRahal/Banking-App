@@ -10,7 +10,7 @@ This application provides a banking platform where users can manage their transa
 - **JavaScript:** A programming language used for adding interactivity and logic to the game.
 - **CSS (Cascading Style Sheets):** A stylesheet language used for describing the presentation of a document written in HTML.
 
-### Backend
+#### Backend
 - **Node.js:** A JavaScript runtime built on Chrome's V8 JavaScript engine.
 - **Express:** A web application framework for Node.js.
 - **Cors (Cross-Origin Resource Sharing):** Middleware for Express.js that enables cross-origin HTTP requests between different domains.
