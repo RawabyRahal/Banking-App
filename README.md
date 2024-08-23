@@ -16,7 +16,7 @@ This application provides a banking platform where users can manage their transa
 - **Cors (Cross-Origin Resource Sharing):** Middleware for Express.js that enables cross-origin HTTP requests between different domains.
 - **Body-parser:** Middleware for Express.js used to parse incoming request bodies.
 
-### Database
+#### Database
 - **Mongoose:** An Object Data Modeling (ODM) library for MongoDB and Node.js.
 - **MongoDB:** A NoSQL database management system.
 
